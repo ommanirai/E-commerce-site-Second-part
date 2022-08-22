@@ -29,7 +29,7 @@ exports.placeOrder = async (req, res) => {
     let total_price = individual_order_total.reduce((acc, cur) => { return acc + cur })
 
     let order = new Order({
-        orderitems: orderItemsIds,
+        orderItems: orderItemsIds,
         user: req.body.user,
         total_price: total_price,
         shipping_address: req.body.shipping_address,
@@ -81,7 +81,7 @@ exports.updateOrder = async (req, res) => {
 
 // to view order of a user
 exports.userOrder = async (req, res) => {
-    let order = await Order.find({ user: req.params.user_id }).populate({ path: 'orderItem', populate: { path: 'product', populate: { path: 'category' } } }).populate('user', 'username')
+    let order = await Order.find({ user: req.params.user_id }).populate({ path: 'orderItems', populate: { path: 'product', populate: { path: 'category' } } }).populate('user', 'username')
     if (!order) {
         return res.status(400).json({ error: "Something went wrong" })
     }

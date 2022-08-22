@@ -18,7 +18,7 @@ const CategoryRoute = require('./routes/categoryRoute')
 const ProductRoute = require('./routes/productRoute')
 const UserRoute = require('./routes/userRoute')
 const OrderRoute = require('./routes/orderRoute')
-// const paymentRoute = require('./routes/paymentRoute')
+const paymentRoute = require('./routes/paymentRoute')
 
 
 app.use(bodyparser.json())
@@ -32,7 +32,7 @@ app.use('/api', CategoryRoute)
 app.use('/api', ProductRoute)
 app.use('/api', UserRoute)
 app.use('/api', OrderRoute)
-// api.use('/api', paymentRoute)
+app.use('/api', paymentRoute)
 
 app.use('/public/uploads', express.static('public/uploads'))
 

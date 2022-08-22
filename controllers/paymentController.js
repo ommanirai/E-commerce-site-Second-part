@@ -6,10 +6,12 @@ exports.sendStripeAPI = async (req, res) => {
 }
 // processing payment
 exports.processPayment = async (req, res) => {
-    const PaymentIntent = await stripe.PaymentIntent.create({
-        amount: req.body.amout,
+    console.log(req.body.amount)
+    const PaymentIntent = await stripe.paymentIntents.create({
+        amount: req.body.amount,
+        // amount: 10000,
         currency: 'npr',
-        metadata: { integration_check: 'accept_a_payment' }
+        metadata: { integration_check: "accept_a_payment" }
     })
     res.status(200).json({
         client_secret: PaymentIntent.client_secret
